@@ -16,3 +16,12 @@ require 'faker'
     name: Faker::Travel::Airport.unique.iata(size: 'large', region: 'united_states')
   )
 end
+
+20.times do
+  Flight.create(
+    departure_airport_id: Airport.all.sample(1).first.id,
+    arrival_airport_id: Airport.all.sample(1).first.id,
+    departure_time: Faker::Date.between(from: '2025-06-23', to: '2025-12-25'),
+    duration: "#{rand(2...10)} hours"
+  )
+end
