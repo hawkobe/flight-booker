@@ -7,3 +7,12 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+#
+
+require 'faker'
+
+15.times do
+  Airport.create(
+    name: Faker::Travel::Airport.unique.iata(size: 'large', region: 'united_states')
+  )
+end
