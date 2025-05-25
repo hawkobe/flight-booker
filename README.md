@@ -1,24 +1,7 @@
-# README
+#README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is a project for TOP (The Odin Project) where we are working with advanced forms and nested data to allow users to input information all in one form.
 
-Things you may want to cover:
+This app aims to allow a user (passenger) to search for flights using dates and airports, see displayed lists of available flights, fill out passenger info and "pay" using a portal.
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Will be implementing collections, radio buttons, and nested submissions.
