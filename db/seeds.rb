@@ -17,7 +17,7 @@ require 'faker'
   )
 end
 
-20.times do
+60.times do
   Flight.create(
     departure_airport_id: Airport.all.sample(1).first.id,
     arrival_airport_id: Airport.all.sample(1).first.id,

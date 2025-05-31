@@ -1,12 +1,14 @@
 class FlightsController < ApplicationController
   def index
+    @flights_found = true
     @flights = Flight.search(search_params)
-
     if @flights.nil?
-      @flights = Flight.take(4)
+      @flights_found = false
+      @flights = Flight.includes(:departure_airport).includes(:arrival_airport).take(4)
     elsif @flights.empty?
-      flash.now[:notice] = "Sorry, we couldn't find any flights with those results. Here are some avaiable flights"
-      @flights = Flight.take(4)
+      @flights_found = false
+      flash.now[:notice] = "Sorry, we couldn't find any flights with those results. Here are some available flights"
+      @flights = Flight.includes(:departure_airport).includes(:arrival_airport).take(4)
     else
       @flights
     end

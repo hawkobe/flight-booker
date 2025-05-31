@@ -8,3 +8,11 @@
  *
  * Consider organizing styles into separate files for maintainability.
  */
+
+ .flight-wrapper {
+  display: flex;
+  border: 1px solid gray;
+  gap: 10px;
+  margin: 10px 0;
+  align-items: center;
+ }
