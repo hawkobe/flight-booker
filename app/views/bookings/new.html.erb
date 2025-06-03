@@ -1,0 +1,23 @@
+<h2>Your booking for:</h2>
+
+<h3>Flight Number <%= @flight.id %></h3>
+
+<h3>With <%= params[:passengers] %> passengers</h3>
+
+<h3>On <%= @flight.formatted_date %></h3>
+
+<h2>Please fill out passenger info for each passenger</h2>
+
+<%= form_with model: @booking, method: :post do |form| %>
+  <%= form.hidden_field :flight_id, value: @flight.id %>
+
+  <%= form.fields_for :passengers do |p_form| %>
+      <div>
+        <%= p_form.label :name %>
+        <%= p_form.text_field :name %>
+        <%= p_form.label :email %>
+        <%= p_form.text_field :email %>
+      </div>
+  <% end %>
+  <%= form.submit "Book Flight" %>
+<% end %>

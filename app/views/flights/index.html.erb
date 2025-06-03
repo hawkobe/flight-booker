@@ -32,7 +32,7 @@
     <h2>Examples of Flights:</h2>
   <% end %>
   
-  <%= form_with do |f| %>
+  <%= form_with(url: new_booking_path, method: :get) do |f| %>
     <%= f.hidden_field :passengers, value: params[:passengers] %>
     <%@flights.each do |flight|%>
       <div class="flight-wrapper">
