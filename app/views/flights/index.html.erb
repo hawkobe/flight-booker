@@ -1,20 +1,6 @@
 <h1>Flights</h1>
 
-<%= form_with(url: flights_path, method: :get, class: 'search-form') do |f| %>
-  <%= f.label "Departing Airport" %>
-  <%= f.collection_select :departure_airport_id, Airport.order(:name), :id, :name, selected: params[:departure_airport_id] %>
-
-  <%= f.label :arrival_airport_id, "Arriving Airport" %>
-  <%= f.collection_select :arrival_airport_id, Airport.order(:name), :id, :name, selected: params[:arrival_airport_id] %>
-
-  <%= f.label :departure_time, "Date" %>
-  <%= f.collection_select :departure_time, Flight.select(:departure_time).distinct.order(:departure_time), :departure_time, :formatted_date, selected: params[:departure_time] %>
-
-  <%= f.label "Passengers"%>
-  <%= f.select :passengers, [1, 2, 3, 4, 5, 6]%>
-
-  <%= f.submit "Search", name: nil %>
-<% end %>
+<%= render 'search_form' %>
 
 <div id="flash">
   <% if flash[:notice] %>
@@ -24,27 +10,4 @@
   <% end %>
 </div>
 
-<div class='flights-display'>
-  <% if @flights_found %>
-    <h2>Your Search Results:</h2>
-    <h2>Flights for <%= Date.parse(params[:departure_time]).strftime("%A, %B %d, %Y") %></h2>
-  <% else %>
-    <h2>Examples of Flights:</h2>
-  <% end %>
-  
-  <%= form_with(url: new_booking_path, method: :get) do |f| %>
-    <%= f.hidden_field :passengers, value: params[:passengers] %>
-    <%@flights.each do |flight|%>
-      <div class="flight-wrapper">
-        <%= f.radio_button :flight_option, flight.id %>
-        <p>Duration: </p>
-        <%= flight.duration%>
-        <h4>Departing From: </h4>
-        <%= flight.departure_airport.name%>
-        <h4>Arriving In: </h4>
-        <%= flight.arrival_airport.name%>
-      </div>
-    <%end%>
-    <%= f.submit "Choose Flight" %>
-  <% end %>
-</div>
+<%= render 'flights_results_selection_form' %>
